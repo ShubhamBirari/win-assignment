@@ -32,22 +32,16 @@ export const tasksSlice = createSlice({
     setPageNo: (state, action) => {
       state.pageNo = action.payload;
     },
-    removeItem: (state, action) => {
-      if (action.payload.isItemInCart) {
-        const { tasksList } = JSON.parse(JSON.stringify(state));
-        tasksList.forEach((item) => {
-          if (item.id === action.payload.id) {
-            item.isItemInCart = false;
-            item.quantity = 0;
-          }
-        });
-        state.tasksList = [...tasksList];
-      }
+    deleteTask: (state, action) => {
+      const { tasksList } = JSON.parse(JSON.stringify(state));
+      state.tasksList = [
+        ...tasksList.filter((item) => item.id != action.payload.id),
+      ];
     },
     addTask: (state, action) => {
       state.tasksList = [
-        ...state.tasksList,
         { ...action.payload, id: Math.round(Math.random() * 1000) },
+        ...state.tasksList,
       ];
     },
   },
@@ -57,7 +51,7 @@ export const {
   addTask,
   setLoader,
   selectItem,
-  removeItem,
+  deleteTask,
   setSearch,
   setPageNo,
 } = tasksSlice.actions;

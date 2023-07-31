@@ -5,6 +5,8 @@ import DeleteIcon from "../../assets/delete_icon.svg";
 import { colors } from "../../utils/constants";
 import clsx from "clsx";
 import { useNavigate } from "react-router-dom";
+import { deleteTask, selectItem } from "../../redux/task";
+import { useDispatch } from "react-redux";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -17,6 +19,7 @@ const useStyles = makeStyles((theme) => ({
     boxShadow: "0 2px 2px 0 rgba(0, 0, 0, 0.25)",
     borderRadius: 9,
     justifyContent: "space-between",
+    marginBottom: 24,
   },
   cardLeft: {
     display: "flex",
@@ -48,6 +51,7 @@ const useStyles = makeStyles((theme) => ({
 const TaskCard = ({ task }) => {
   const classes = useStyles();
   const navigate = useNavigate();
+  const dispatch = useDispatch();
   return (
     <div className={classes.root}>
       <div className={classes.cardLeft}>
@@ -56,10 +60,19 @@ const TaskCard = ({ task }) => {
       </div>
       <div className={classes.cardRight}>
         <Button className={classes.btn}>Edit</Button>
-        <Button className={classes.btn} onClick={() => navigate("/view")}>
+        <Button
+          className={classes.btn}
+          onClick={() => {
+            dispatch(selectItem(task));
+            navigate("/view");
+          }}
+        >
           View
         </Button>
-        <Button className={clsx(classes.deleteBtn)}>
+        <Button
+          className={clsx(classes.deleteBtn)}
+          onClick={() => dispatch(deleteTask(task))}
+        >
           <img
             src={DeleteIcon}
             alt="detele_icon"

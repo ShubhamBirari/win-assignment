@@ -7,6 +7,7 @@ import Button from "../../components/button/Button";
 import { Controller, useForm } from "react-hook-form";
 import { useDispatch } from "react-redux";
 import { addTask } from "../../redux/task";
+import { useNavigate } from "react-router-dom";
 
 const useStyles = makeStyles((theme) => ({
   form: {
@@ -43,6 +44,7 @@ const useStyles = makeStyles((theme) => ({
 const Form = () => {
   const classes = useStyles();
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const {
     handleSubmit,
     control,
@@ -51,6 +53,7 @@ const Form = () => {
 
   const onSubmit = (data) => {
     dispatch(addTask(data));
+    navigate("/");
   };
 
   return (

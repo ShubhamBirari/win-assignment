@@ -6,6 +6,8 @@ import { useNavigate } from "react-router-dom";
 import LeftArrow from "../../assets/left_arrow_icon.svg";
 import DeleteIcon from "../../assets/delete_icon.svg";
 import EditIcon from "../../assets/edit_icon.svg";
+import { useDispatch, useSelector } from "react-redux";
+import { deleteTask, selectItem } from "../../redux/task";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -20,6 +22,7 @@ const useStyles = makeStyles((theme) => ({
   },
   description: {
     marginBottom: 80,
+    width: 726,
   },
   btnContainer: {
     display: "flex",
@@ -51,18 +54,27 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const Detail = () => {
+  const { selected } = useSelector((state) => state.tasks);
   const classes = useStyles();
   const navigate = useNavigate();
+  const dispatch = useDispatch();
+
   return (
     <>
       <div className={classes.root}>
-        <p className={classes.title}> Title : </p>
-        <p className={classes.description}> Description : </p>
+        <p className={classes.title}> Title : {selected?.title}</p>
+        <p className={classes.description}>
+          {" "}
+          Description : {selected?.description}
+        </p>
         <div className={classes.btnContainer}>
           <div className={classes.btnGroup}>
             <Button
               className={clsx(classes.btn, classes.bgBlack)}
-              onClick={() => navigate("/")}
+              onClick={() => {
+                dispatch(selectItem(null));
+                navigate("/");
+              }}
             >
               <img src={LeftArrow} alt="left_arrow" className={classes.icon} />
             </Button>
@@ -75,7 +87,14 @@ const Detail = () => {
             Edit
           </div>
           <div className={classes.btnGroup}>
-            <Button className={clsx(classes.btn, classes.bgRed)}>
+            <Button
+              className={clsx(classes.btn, classes.bgRed)}
+              onClick={() => {
+                dispatch(deleteTask(selected));
+                dispatch(selectItem(null));
+                navigate("/");
+              }}
+            >
               <img
                 src={DeleteIcon}
                 alt="detele_icon"
