@@ -51,8 +51,8 @@ const TaskCard = ({ task }) => {
   return (
     <div className={classes.root}>
       <div className={classes.cardLeft}>
-        <div>Checkbox</div>
-        <span>{task.name}</span>
+        {/* <div>Checkbox</div> */}
+        <span>{task.title}</span>
       </div>
       <div className={classes.cardRight}>
         <Button className={classes.btn}>Edit</Button>

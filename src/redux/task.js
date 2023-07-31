@@ -3,12 +3,7 @@ import { createSlice } from "@reduxjs/toolkit";
 export const tasksSlice = createSlice({
   name: "tasks",
   initialState: {
-    tasksList: [
-      {
-        id: 23,
-        name: "Prepare A/B Test",
-      },
-    ],
+    tasksList: [],
     loader: true,
     selected: null,
     search: null,
@@ -49,9 +44,21 @@ export const tasksSlice = createSlice({
         state.tasksList = [...tasksList];
       }
     },
+    addTask: (state, action) => {
+      state.tasksList = [
+        ...state.tasksList,
+        { ...action.payload, id: Math.round(Math.random() * 1000) },
+      ];
+    },
   },
 });
 
-export const { setLoader, selectItem, removeItem, setSearch, setPageNo } =
-  tasksSlice.reducer;
+export const {
+  addTask,
+  setLoader,
+  selectItem,
+  removeItem,
+  setSearch,
+  setPageNo,
+} = tasksSlice.actions;
 export default tasksSlice.reducer;

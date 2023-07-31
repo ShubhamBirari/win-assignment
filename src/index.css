@@ -16,7 +16,8 @@ code {
 #root {
   height: inherit;
 }
-textarea::placeholder {
+textarea::placeholder,
+textarea {
   font-family: 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
     sans-serif;
