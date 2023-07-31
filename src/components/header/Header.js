@@ -35,6 +35,9 @@ const useStyles = makeStyles((theme) => ({
     color: "#fff",
     fontSize: 16,
   },
+  add_task_icon: {
+    marginRight: 16,
+  },
 }));
 
 const Header = () => {
@@ -46,7 +49,11 @@ const Header = () => {
       <div className={classes.root}>
         <img src={Logo} alt="logo" className={classes.image} />
         <div className={classes.nav_right}>
-          <img src={AddTask} alt="add_task_image" />
+          <img
+            src={AddTask}
+            alt="add_task_image"
+            className={classes.add_task_icon}
+          />
 
           <div className={classes.profile}>
             <img src={picture.thumbnail} className={classes.profile_image} />
