@@ -25,13 +25,6 @@ export const tasksSlice = createSlice({
     setLoader: (state, action) => {
       state.loader = action.payload;
     },
-    setSearch: (state, action) => {
-      state.search = action.payload;
-      state.pageNo = 0;
-    },
-    setPageNo: (state, action) => {
-      state.pageNo = action.payload;
-    },
     deleteTask: (state, action) => {
       const { tasksList } = JSON.parse(JSON.stringify(state));
       state.tasksList = [
@@ -39,10 +32,9 @@ export const tasksSlice = createSlice({
       ];
     },
     addTask: (state, action) => {
-      state.tasksList = [
-        { ...action.payload, id: Math.round(Math.random() * 1000) },
-        ...state.tasksList,
-      ];
+      let list = JSON.parse(JSON.stringify(state)).tasksList;
+      list.unshift({ ...action.payload, id: Math.round(Math.random() * 10000000) });
+      state.tasksList = [...list];
     },
     editTask: (state, action) => {
       const { tasksList } = JSON.parse(JSON.stringify(state));
@@ -60,13 +52,6 @@ export const tasksSlice = createSlice({
   },
 });
 
-export const {
-  addTask,
-  editTask,
-  setLoader,
-  selectItem,
-  deleteTask,
-  setSearch,
-  setPageNo,
-} = tasksSlice.actions;
+export const { addTask, editTask, setLoader, selectItem, deleteTask } =
+  tasksSlice.actions;
 export default tasksSlice.reducer;
