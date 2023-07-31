@@ -5,6 +5,7 @@ import List from "./pages/tasks/List";
 import { makeStyles } from "@mui/styles";
 import { colors } from "./utils/constants";
 import Form from "./pages/tasks/Form";
+import Detail from "./pages/tasks/Detail";
 
 const useStyles = makeStyles((theme) => ({
   container: {
@@ -26,6 +27,7 @@ function App() {
         <Routes>
           <Route path="/" element={<List />} />
           <Route path="/add" element={<Form />} />
+          <Route path="/view" element={<Detail />} />
         </Routes>
       </div>
     </div>

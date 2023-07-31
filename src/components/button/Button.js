@@ -21,7 +21,9 @@ const Button = (props) => {
   const classes = useStyles();
   const { className } = props;
   return (
-    <button className={clsx(classes.root, className)}>{props.children}</button>
+    <button {...props} className={clsx(classes.root, className)}>
+      {props.children}
+    </button>
   );
 };
 

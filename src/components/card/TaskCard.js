@@ -4,6 +4,7 @@ import Button from "../button/Button";
 import DeleteIcon from "../../assets/delete_icon.svg";
 import { colors } from "../../utils/constants";
 import clsx from "clsx";
+import { useNavigate } from "react-router-dom";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -46,6 +47,7 @@ const useStyles = makeStyles((theme) => ({
 
 const TaskCard = ({ task }) => {
   const classes = useStyles();
+  const navigate = useNavigate();
   return (
     <div className={classes.root}>
       <div className={classes.cardLeft}>
@@ -54,7 +56,9 @@ const TaskCard = ({ task }) => {
       </div>
       <div className={classes.cardRight}>
         <Button className={classes.btn}>Edit</Button>
-        <Button className={classes.btn}>View</Button>
+        <Button className={classes.btn} onClick={() => navigate("/view")}>
+          View
+        </Button>
         <Button className={clsx(classes.deleteBtn)}>
           <img
             src={DeleteIcon}
