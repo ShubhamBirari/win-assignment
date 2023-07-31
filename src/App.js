@@ -4,6 +4,7 @@ import Header from "./components/header/Header";
 import List from "./pages/tasks/List";
 import { makeStyles } from "@mui/styles";
 import { colors } from "./utils/constants";
+import Form from "./pages/tasks/Form";
 
 const useStyles = makeStyles((theme) => ({
   container: {
@@ -24,6 +25,7 @@ function App() {
       <div className={classes.container}>
         <Routes>
           <Route path="/" element={<List />} />
+          <Route path="/add" element={<Form />} />
         </Routes>
       </div>
     </div>
