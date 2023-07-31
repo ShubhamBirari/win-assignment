@@ -59,7 +59,16 @@ const TaskCard = ({ task }) => {
         <span>{task.title}</span>
       </div>
       <div className={classes.cardRight}>
-        <Button className={classes.btn}>Edit</Button>
+        <Button
+          className={classes.btn}
+          onClick={() => {
+            console.log(task);
+            dispatch(selectItem(task));
+            navigate("/add");
+          }}
+        >
+          Edit
+        </Button>
         <Button
           className={classes.btn}
           onClick={() => {

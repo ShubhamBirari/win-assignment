@@ -44,11 +44,25 @@ export const tasksSlice = createSlice({
         ...state.tasksList,
       ];
     },
+    editTask: (state, action) => {
+      const { tasksList } = JSON.parse(JSON.stringify(state));
+      let list = [];
+      tasksList.forEach((item) => {
+        if (item.id === action.payload.id) {
+          item = { ...action.payload };
+        }
+        list.push(item);
+      });
+
+      console.log(list);
+      state.tasksList = [...list];
+    },
   },
 });
 
 export const {
   addTask,
+  editTask,
   setLoader,
   selectItem,
   deleteTask,

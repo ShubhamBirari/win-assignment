@@ -1,12 +1,12 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Input from "../../components/input/Input";
 import { makeStyles } from "@mui/styles";
 import TextArea from "../../components/input/TextArea";
 import clsx from "clsx";
 import Button from "../../components/button/Button";
 import { Controller, useForm } from "react-hook-form";
-import { useDispatch } from "react-redux";
-import { addTask } from "../../redux/task";
+import { useDispatch, useSelector } from "react-redux";
+import { addTask, editTask, selectItem } from "../../redux/task";
 import { useNavigate } from "react-router-dom";
 
 const useStyles = makeStyles((theme) => ({
@@ -41,24 +41,37 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const Form = () => {
+const Form = ({ type }) => {
   const classes = useStyles();
+  const { selected } = useSelector((state) => state.tasks);
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const {
     handleSubmit,
     control,
     formState: { errors },
+    setValue,
   } = useForm();
 
   const onSubmit = (data) => {
-    dispatch(addTask(data));
+    if (selected) {
+      dispatch(editTask({ ...data, id: selected.id }));
+      dispatch(selectItem(null));
+    } else dispatch(addTask(data));
+
     navigate("/");
   };
 
+  useEffect(() => {
+    if (selected) {
+      setValue("title", selected.title);
+      setValue("description", selected.description);
+    }
+  }, []);
+
   return (
     <>
-      <p>Add Task</p>
+      <p> {selected ? "Edit " : "Add "} Task</p>
       <form onSubmit={handleSubmit(onSubmit)}>
         <Controller
           name="title"
