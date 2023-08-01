@@ -18,12 +18,18 @@ const useStyles = makeStyles((theme) => ({
     border: "none",
     boxShadow: "0 2px 2px 0 rgba(0, 0, 0, 0.25)",
     borderRadius: 9,
+    [theme.breakpoints.down("sm")]: {
+      padding: 16,
+    },
   },
   inputGrp: {
     marginBottom: 35,
   },
   input: {
     height: 85,
+    [theme.breakpoints.down("sm")]: {
+      height: 52,
+    },
   },
   textarea: {
     height: 178,

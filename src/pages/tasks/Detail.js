@@ -14,7 +14,11 @@ const useStyles = makeStyles((theme) => ({
     width: "100%",
     padding: 32,
     fontSize: 16,
-    marginTop: 60,
+    marginTop: 20,
+    [theme.breakpoints.down("sm")]: {
+      padding: 0,
+      marginTop: 30,
+    },
   },
   title: {
     fontWeight: 700,
@@ -23,6 +27,9 @@ const useStyles = makeStyles((theme) => ({
   description: {
     marginBottom: 80,
     width: 726,
+    [theme.breakpoints.down("sm")]: {
+      width: "auto",
+    },
   },
   btnContainer: {
     display: "flex",
@@ -49,7 +56,7 @@ const useStyles = makeStyles((theme) => ({
     backgroundColor: "black",
   },
   bgRed: {
-    backgroundColor: "rgba(255, 0, 0, 1)    ",
+    backgroundColor: "rgba(255, 0, 0, 1)",
   },
 }));
 

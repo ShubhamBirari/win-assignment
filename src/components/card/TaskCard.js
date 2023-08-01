@@ -20,18 +20,33 @@ const useStyles = makeStyles((theme) => ({
     borderRadius: 9,
     justifyContent: "space-between",
     marginBottom: 24,
+    [theme.breakpoints.down("sm")]: {
+      padding: "14px 10px",
+      height: 52,
+    },
   },
   cardLeft: {
     display: "flex",
+    overflow: "hidden",
+    textOverflow: "ellipsis",
+    whiteSpace: "nowrap",
   },
   cardRight: {
     display: "flex",
     marginRight: 32,
+    [theme.breakpoints.down("sm")]: {
+      marginRight: 0,
+    },
   },
   btn: {
     margin: "0px 12px",
     minWidth: 60,
     borderRadius: 24,
+    [theme.breakpoints.down("sm")]: {
+      minWidth: 40,
+      fontSize: 12,
+      margin: "0px 4px",
+    },
   },
   deleteBtn: {
     margin: "0px 12px",
@@ -41,10 +56,18 @@ const useStyles = makeStyles((theme) => ({
     backgroundColor: colors.deleteBackgroundColor,
     padding: 12,
     borderRadius: "50%",
+    [theme.breakpoints.down("sm")]: {
+      padding: 8,
+      margin: "0px 6px",
+    },
   },
   deleteIcon: {
     height: 24,
     width: 24,
+    [theme.breakpoints.down("sm")]: {
+      height: 18,
+      width: 18,
+    },
   },
 }));
 

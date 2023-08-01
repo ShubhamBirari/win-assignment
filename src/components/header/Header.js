@@ -14,17 +14,30 @@ const useStyles = makeStyles((theme) => ({
     justifyContent: "space-between",
     alignItems: "center",
     padding: "24px 48px",
+    [theme.breakpoints.down("sm")]: {
+      height: "calc(100px - 24px - 24px)",
+      padding: 16,
+    },
   },
   image: {
     height: 56,
     width: 122,
     cursor: "pointer",
+    [theme.breakpoints.down("sm")]: {
+      width: 86,
+    },
   },
   profile_image: {
     width: 68,
     height: 68,
     borderRadius: 34,
     paddingRight: 16,
+
+    [theme.breakpoints.down("sm")]: {
+      height: 40,
+      width: 40,
+      paddingRight: 8,
+    },
   },
   nav_right: {
     display: "flex",
@@ -36,10 +49,16 @@ const useStyles = makeStyles((theme) => ({
     margin: "0 32px",
     color: "#fff",
     fontSize: 16,
+    [theme.breakpoints.down("sm")]: {
+      margin: "0 16px",
+    },
   },
   add_task_icon: {
     marginRight: 16,
     cursor: "pointer",
+    [theme.breakpoints.down("sm")]: {
+      marginRight: 8,
+    },
   },
 }));
 

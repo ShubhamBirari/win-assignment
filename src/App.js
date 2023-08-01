@@ -15,6 +15,9 @@ const useStyles = makeStyles((theme) => ({
     backgroundColor: colors.defaultBackgroundColor,
     boxSizing: "border-box",
     height: "calc(100vh - 135px)",
+    [theme.breakpoints.down("sm")]: {
+      padding: "16px 24px",
+    },
   },
 }));
 
