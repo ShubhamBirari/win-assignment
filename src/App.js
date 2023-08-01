@@ -1,23 +1,38 @@
-import logo from './logo.svg';
-import './App.css';
+import { Route, Routes } from "react-router-dom";
+import "./App.css";
+import Header from "./components/header/Header";
+import List from "./pages/tasks/List";
+import { makeStyles } from "@mui/styles";
+import { colors } from "./utils/constants";
+import Form from "./pages/tasks/Form";
+import Detail from "./pages/tasks/Detail";
+
+const useStyles = makeStyles((theme) => ({
+  container: {
+    padding: "24px 98px",
+    display: "block",
+    textAlign: "start",
+    backgroundColor: colors.defaultBackgroundColor,
+    boxSizing: "border-box",
+    height: "calc(100vh - 135px)",
+    [theme.breakpoints.down("sm")]: {
+      padding: "16px 24px",
+    },
+  },
+}));
 
 function App() {
+  const classes = useStyles();
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Header />
+      <div className={classes.container}>
+        <Routes>
+          <Route path="/" element={<List />} />
+          <Route path="/add" element={<Form />} />
+          <Route path="/view" element={<Detail />} />
+        </Routes>
+      </div>
     </div>
   );
 }
