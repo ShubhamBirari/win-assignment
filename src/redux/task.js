@@ -26,10 +26,10 @@ export const tasksSlice = createSlice({
       state.loader = action.payload;
     },
     deleteTask: (state, action) => {
-      const { tasksList } = JSON.parse(JSON.stringify(state));
-      state.tasksList = [
-        ...tasksList.filter((item) => item.id != action.payload.id),
-      ];
+      const temp = JSON.parse(JSON.stringify(state))?.tasksList.filter(
+        (item) => item.id != action.payload.id
+      );
+      state.tasksList = [...temp];
     },
     addTask: (state, action) => {
       let list = JSON.parse(JSON.stringify(state)).tasksList;
