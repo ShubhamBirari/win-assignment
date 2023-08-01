@@ -1,10 +1,11 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Logo from "./../../assets/logo.svg";
 import AddTask from "./../../assets/add_task_icon.svg";
 import { colors } from "../../utils/constants";
 import { makeStyles } from "@mui/styles";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import { getUserDetail } from "../../redux/user";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -65,8 +66,14 @@ const useStyles = makeStyles((theme) => ({
 const Header = () => {
   const classes = useStyles();
   const { userDetail } = useSelector((state) => state.users);
-  const { name, picture } = userDetail.results[0];
+  const { name, picture } = userDetail;
   const navigate = useNavigate();
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(getUserDetail());
+  }, []);
+
   return (
     <>
       <div className={classes.root}>
@@ -85,9 +92,9 @@ const Header = () => {
           />
 
           <div className={classes.profile}>
-            <img src={picture.thumbnail} className={classes.profile_image} />
+            <img src={picture?.thumbnail} className={classes.profile_image} />
             <span>
-              {name.first} {name.last}
+              {name?.first} {name?.last}
             </span>
           </div>
         </div>
