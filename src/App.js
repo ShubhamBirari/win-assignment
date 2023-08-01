@@ -23,7 +23,6 @@ const useStyles = makeStyles((theme) => ({
 
 function App() {
   const classes = useStyles();
-  console.log("App render");
   return (
     <div className="App">
       <Header />

@@ -85,7 +85,6 @@ const TaskCard = ({ task }) => {
         <Button
           className={classes.btn}
           onClick={() => {
-            console.log(task);
             dispatch(selectItem(task));
             navigate("/add");
           }}

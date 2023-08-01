@@ -46,7 +46,6 @@ export const tasksSlice = createSlice({
         list.push(item);
       });
 
-      console.log(list);
       state.tasksList = [...list];
     },
   },
