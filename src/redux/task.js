@@ -11,7 +11,7 @@ export const tasksSlice = createSlice({
   },
   reducers: {
     selectItem: (state, action) => {
-      state.selected = { ...action.payload };
+      state.selected = action.payload;
     },
     selectedFilters: (state, action) => {
       if (action.payload === null) {
@@ -27,14 +27,18 @@ export const tasksSlice = createSlice({
     },
     deleteTask: (state, action) => {
       const temp = JSON.parse(JSON.stringify(state))?.tasksList.filter(
-        (item) => item.id != action.payload.id
+        (item) => item.id !== action.payload.id
       );
       state.tasksList = [...temp];
+      state.selected = null
     },
     addTask: (state, action) => {
       let list = JSON.parse(JSON.stringify(state)).tasksList;
+
       list.unshift({ ...action.payload, id: Math.round(Math.random() * 10000000) });
+
       state.tasksList = [...list];
+      state.selected = null;
     },
     editTask: (state, action) => {
       const { tasksList } = JSON.parse(JSON.stringify(state));
@@ -47,6 +51,7 @@ export const tasksSlice = createSlice({
       });
 
       state.tasksList = [...list];
+      state.selected = null
     },
   },
 });
